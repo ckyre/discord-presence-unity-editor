@@ -5,6 +5,9 @@ Discord's Rich Presence for Unity Editor (editor only!)
 I share with you my personnal editor script based on MarshMello0's code at https://github.com/MarshMello0/Editor-Rich-Presence
 
 ## Features
+
+This script allow you to display on your discord activity :
+
 1. Unity version
 2. Project name
 3. Scene name
