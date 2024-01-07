@@ -48,7 +48,7 @@ public static class UERP
 
         // Get start timestamp
         TimeSpan timeSpan = TimeSpan.FromMilliseconds(EditorAnalyticsSessionInfo.elapsedTime);
-        startTimestamp = DateTimeOffset.Now.Add(timeSpan).ToUnixTimeSeconds();
+        startTimestamp = DateTimeOffset.Now.Subtract(timeSpan).ToUnixTimeSeconds();
 
         // Update activity
         EditorApplication.update += Update;
@@ -105,18 +105,12 @@ public static class UERP
 
     private static bool DiscordRunning()
     {
-        Process[] processes = Process.GetProcessesByName("Discord");
+        if (Process.GetProcessesByName("Discord").Length == 0)
+            if (Process.GetProcessesByName("DiscordPTB").Length == 0)
+                if (Process.GetProcessesByName("DiscordCanary").Length == 0)
+                    return false;
 
-        if (processes.Length == 0)
-        {
-            processes = Process.GetProcessesByName("DiscordPTB");
-
-            if (processes.Length == 0)
-            {
-                processes = Process.GetProcessesByName("DiscordCanary");
-            }
-        }
-        return processes.Length != 0;
+        return true;
     }
 
 }
